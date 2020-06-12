@@ -1,6 +1,6 @@
 {
     "private": true,
-    "type": "module"
+    "type": "module",
     "name": "modules",
     "version": "1.0.0",
     "description": "",
