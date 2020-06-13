@@ -28,9 +28,9 @@ const install = async function () {
     const configPath = path.resolve(config);
     const modules = (await import(configPath)).default;
 
-    for (let [ from, to ] of modules) {
-        to = path.normalize(to);
+    for (let [ from, tos ] of modules) {
         from = path.normalize(from);
+        tos = typeof tos === 'string' ? [path.normalize(tos)] : tos.map(to => path.normalize(to));
 
         const parts = from.split('/');
 
@@ -38,9 +38,22 @@ const install = async function () {
 
         const { code, body } = await get(`${origin}${parts.join('/')}`);
 
-        await writeFile(`${to}/${parts[parts.length-1]}`, body);
+        if (code === 404) {
+            console.log(`Not Found: ${from}`);
+            continue;
+        }
 
+        if (code !== 200) {
+            console.log(`Error: ${from}`);
+            continue;
+        }
+
+        for (const to of tos) {
+            console.log(`Installing: ${from} --> ${to}`);
+            await writeFile(`${to}`, body);
+        }
     }
+
 };
 
 const help = async function () {
