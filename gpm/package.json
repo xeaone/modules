@@ -1,0 +1,11 @@
+{
+    "type": "module",
+    "name": "gpm",
+    "version": "1.0.0",
+    "description": "",
+    "bin": "gpm.js",
+    "main": "gpm.js",
+    "scripts": {},
+    "author": "Alexander Elias",
+    "license": "SEE LICENSE IN LICENSE"
+}
