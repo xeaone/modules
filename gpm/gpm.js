@@ -5,7 +5,7 @@ import https from 'https';
 import path from 'path';
 import fs from 'fs';
 
-const { writeFile } = fs.promises;
+const { readFile, writeFile } = fs.promises;
 
 const config = 'gpmc.js';
 const origin = 'https://raw.githubusercontent.com/';
@@ -56,18 +56,28 @@ const install = async function () {
 
 };
 
+const version = async function () {
+    const pck = await readFile('./package.json');
+    const { version } = JSON.parse(pck);
+    console.log(`v${version}`);
+};
+
 const help = async function () {
     console.log(`
+    Git Package Manager
+
     Commands:
+        help
+        version
         install
     `);
 };
 
-console.log('Git Package Manager');
-
-const [,, command ] = process.argv;
+const [ ,,command ] = process.argv;
 
 switch (command) {
    case 'help': help().catch(console.error); break;
+   case 'version': version().catch(console.error); break;
    case 'install': install().catch(console.error); break;
+   default: help().catch(console.error);
 }
