@@ -4,18 +4,18 @@ export default function (items, option) {
     return items.filter(item => {
 
         for (const key of keys) {
-            const value = option[key];
+            const optionValue = typeof option[key] === 'string' : option[key].toLowerCase() : option[key];
 
-            if (value === '' || value === null || value === undefined) continue;
+            if (optionValue === '' || optionValue === null || optionValue === undefined) continue;
 
-            if (value === '*') continue;
+            if (optionValue === '*') continue;
 
-            if (value instanceof Array) {
+            if (optionValue instanceof Array) {
                 let flag = false;
 
-                for (const v of value) {
-                    const iv = item[key];
-                    flag = iv instanceof Array ? iv.includes(v) : iv === v;
+                for (const value of optionValue) {
+                    const itemValue = typeof item[key] === 'string' : item[key].toLowerCase() : item[key]  ;
+                    flag = itemValue instanceof Array ? itemValue.includes(value) : itemValue === value;
                     if (flag) break;
                 }
 
@@ -23,7 +23,8 @@ export default function (items, option) {
                 else return false;
             }
 
-            if (value !== item[key]) return false;
+            const itemValue = typeof item[key] === 'string' : item[key].toLowerCase() : item[key];
+            if (optionValue !== itemValue) return false;
 
         }
 
