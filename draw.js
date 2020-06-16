@@ -1,4 +1,10 @@
 
+/*
+	This Source Code Form is subject to the terms of the Mozilla Public
+	License, v. 2.0. If a copy of the MPL was not distributed with this
+	file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
 export default class Draw {
 
     constructor (option = {}) {
@@ -70,7 +76,7 @@ export default class Draw {
         this._canvas.addEventListener('touchend', this._up, false);
         this._canvas.addEventListener('touchmove', this._move, false);
         this._canvas.addEventListener('touchstart', this._down, false);
-        
+
         return this;
     }
 
