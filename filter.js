@@ -4,7 +4,7 @@ export default function (items, option) {
     return items.filter(item => {
 
         for (const key of keys) {
-            const optionValue = typeof option[key] === 'string' : option[key].toLowerCase() : option[key];
+            const optionValue = typeof option[key] === 'string' ? option[key].toLowerCase() : option[key];
 
             if (optionValue === '' || optionValue === null || optionValue === undefined) continue;
 
