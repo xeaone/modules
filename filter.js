@@ -14,7 +14,7 @@ export default function (items, option) {
                 let flag = false;
 
                 for (const value of optionValue) {
-                    const itemValue = typeof item[key] === 'string' : item[key].toLowerCase() : item[key]  ;
+                    const itemValue = typeof item[key] === 'string' ? item[key].toLowerCase() : item[key]  ;
                     flag = itemValue instanceof Array ? itemValue.includes(value) : itemValue === value;
                     if (flag) break;
                 }
